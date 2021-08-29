@@ -10,14 +10,14 @@ def print_crosspiece():
     print('+ - - - - ', end='')
 
 def print_crosspieces():
-    do_twice(print_crosspiece)
+    do_four(print_crosspiece)
     print('+')
 
 def print_column():
     print('|         ', end='')
 
 def print_columns():
-    do_twice(print_column)
+    do_four(print_column)
     print('|')
 
 def draw_section():
@@ -25,7 +25,7 @@ def draw_section():
     do_four(print_columns)
 
 def draw_whole():
-    do_twice(draw_section)
+    do_four(draw_section)
     print_crosspieces()
 
 draw_whole()
