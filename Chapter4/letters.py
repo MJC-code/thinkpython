@@ -40,5 +40,7 @@ def draw_a(t, n):
     t.setheading(-75)
     t.fd(n*3)
     t.setheading(0)
+    t.pu
+    
     
     
