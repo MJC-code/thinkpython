@@ -52,10 +52,9 @@ def draw_c(t, n):
     
 def draw_d(t, n):
     t.setheading(0)
-<<<<<<< HEAD
     t.pu
     
-=======
+
     polygon.arc(bob, n, 180)
     t.setheading(270)
     t.fd(n*2)
@@ -76,7 +75,7 @@ def draw_e(t, n):
     
     t.fd(n)
     add_space(t, n)
->>>>>>> aaf6407d5c408979992ca9bc2c48816d5177452a
+
     
     
 scale = 30
