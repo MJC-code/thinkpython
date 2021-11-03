@@ -4,6 +4,7 @@ import turtle
 import polygon
 import math
 
+
 def fdbk(t, n):
     t.fd(n)
     t.bk(n)
@@ -72,9 +73,11 @@ def draw_e(t, n):
     
     t.fd(n)
     add_space(t, n)
+
+
     
     
-scale = 30
+scale = 40
 bob = turtle.Turtle()
 draw_a(bob, scale)
 
@@ -82,7 +85,11 @@ draw_b(bob, scale)
 draw_c(bob, scale)
 draw_d(bob, scale)
 draw_e(bob, scale)
+polygon.circle(bob,300)
 turtle.mainloop()
+
+
+
 
 
     
