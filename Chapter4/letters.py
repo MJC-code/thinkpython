@@ -395,7 +395,7 @@ def draw_z(t, n):
     fdbk(t, 2 * n / math.sin(math.radians(63.8)))
     space(t, n)
     
-scale = 30
+scale = 10
 bob = turtle.Turtle()
 bob.pu()
 bob.setheading(180)
@@ -421,9 +421,9 @@ draw_n(bob, scale)
 draw_o(bob, scale)
 bob.pu()
 bob.setheading(270)
-bob.fd(100)
+bob.fd(scale * 3)
 bob.rt(90)
-bob.fd(650)
+bob.fd(scale * 25)
 bob.pd()
 draw_p(bob, scale)
 draw_q(bob, scale)
