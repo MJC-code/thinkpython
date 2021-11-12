@@ -2,13 +2,14 @@
 
 def check_fermat(a, b, c, n):
     """Checks whether 4 positive integers obey Fermat's last theorem
-    (a**n + b**n = c**n doesn't hold for n>2)"""
+(a**n + b**n = c**n doesn't hold for n>2)
+    """
     for i in [a, b, c, n]:
         if i < 1:
-            print('This function only accepts positive integers')
+            print('Please enter 4 positive integers')
             return
         
-    if a**n + b**n == c **n and n>2:
+    if a**n + b**n == c**n and n>2:
         print ('\nHoly smokes, Fermat was wrong!')
     else:
         print ("\nNo that doesn't work.")
