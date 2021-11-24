@@ -26,4 +26,4 @@ def test_square_root(maximum):
             
        
     
-test_square_root(10)
+test_square_root(100)
