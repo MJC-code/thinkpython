@@ -1,0 +1,2 @@
+print('banana'.count('a'))
+               
