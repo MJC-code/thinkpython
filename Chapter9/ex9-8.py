@@ -1,17 +1,20 @@
 
 def car_talk():
-     """Searches 6 digit numbers from 000000 to 999999 for those where
+     """Searches 6 digit numbers from 000000 to 999999 for those where:
           number : last 4 digits are palindromic
           number + 1: last 5 digits are palindromic
-          number + 2: all 6 digits are palindromic"""
+          number + 2: middle 4 digits are palindromic
+          number + 3: all 6 digits are palindromic"""
      for i in range(0, 999999):
           j = str(i).zfill(6)
           if is_palindrome(j[2:]):
                k = str(i+1).zfill(6)
                if is_palindrome(k[1:]):
                     l = str(i+2).zfill(6)
-                    if is_palindrome(l):
-                         print(j)
+                    if is_palindrome(l[1:5]):
+                         m = str(i+3).zfill(6)
+                         if is_palindrome(m):
+                              print(j)
           
 
 
