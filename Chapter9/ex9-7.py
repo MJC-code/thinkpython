@@ -1,5 +1,5 @@
 
-def test_words():
+def car_talk1():
      """Finds words that contain 3 consecutive double letters"""
      fin = open('words.txt')
      
@@ -19,7 +19,7 @@ def consecutive_3_double(word):
      return False
 
 
-test_words()
+car_talk1()
           
 
 

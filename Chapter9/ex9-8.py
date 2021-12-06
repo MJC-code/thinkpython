@@ -1,5 +1,5 @@
 
-def car_talk():
+def car_talk2():
      """Searches 6 digit numbers from 000000 to 999999 for those where:
           number : last 4 digits are palindromic
           number + 1: last 5 digits are palindromic
@@ -35,7 +35,7 @@ def is_reverse(word1, word2):
      return True
 
 
-car_talk()
+car_talk2()
 
 
 
