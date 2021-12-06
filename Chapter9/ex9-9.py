@@ -16,8 +16,7 @@ def car_talk3():
                     counter = counter + 1
                     ages = ages + s + '   ' + m + '\n'
           if counter == 8:
-               print ('This is the correct age difference, The current age of son is the sixth value below')
-               print ('Age difference: ', age_difference, '\nNumber of palindromes: ', counter)
+               print ('This age diffence is', age_difference, 'The current age of son is the sixth value below')
                print('Son  Mum')
                print(ages)
                
