@@ -16,7 +16,7 @@ def car_talk3():
                     counter = counter + 1
                     ages = ages + s + '   ' + m + '\n'
           if counter == 8:
-               print ('This age diffence is', age_difference, 'The current age of son is the sixth value below')
+               print ('This age difference is', age_difference, '\nThe current age of the son is the sixth value below')
                print('Son  Mum')
                print(ages)
                
