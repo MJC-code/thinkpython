@@ -37,4 +37,4 @@ def histogram(s):
                d[c] += 1
      return d
 
-print(scrabble_solver('laura'))
+print(scrabble_solver('mark'))
