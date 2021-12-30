@@ -1,5 +1,8 @@
 def make_anagram_dict(filename):
-    """Finds all anagrams in a list of words, returns a dictionary of words-> anagrams"""
+    """Takes a text file containing one word per line.
+    Returns a dictionary:
+    Key is an alphabetised duple of letters in each word,
+    Value is a list of all words that can be formed by those letters"""
     result = {}
     fin = open(filename)
     
@@ -33,9 +36,10 @@ def find_anagrams(filename):
     return list_of_anagrams
 
 
+
 def sort_anagram_list(filename):
     """Takes a list of lists of anagrams, sorts by list length high to low
-    Returns a list of duples - length, list of anagrams"""
+    Returns a list of duples - length of words, list of anagrams"""
     t = find_anagrams('words.txt')
     res = []
     lengths = []
@@ -56,19 +60,24 @@ def find_most_anagrams_of_length_n(filename, n):
                 anagrams.append(word)
             if sorted(anagrams) not in anagrams:
                 result.append(sorted(anagrams))
-    
-    lengths = {}
+    answer = []
+    lengths_dict = {}
     for i in result:
         if len(i) > 1:
-            print(i)
+            if len(i) not in lengths_dict:
+                lengths_dict[len(i)] = [i]
+            else:
+                lengths_dict[len(i)].append(i)
+
+    for k, v in sorted(lengths_dict.items(), reverse=True):
+        answer.append(v)
+    return answer[0]
         
-    
+
         
 
 
 t = find_most_anagrams_of_length_n('words.txt', n=8)
-for i in t:
-    print(i)
-    
+print(t)
 
     
