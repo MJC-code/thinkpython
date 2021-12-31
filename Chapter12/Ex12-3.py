@@ -1,3 +1,41 @@
+def find_metathesis_pair(filename):
+    """Takes a word list as text file, returns a list of word pairs that can
+    be created by swapping one pair of letters"""
+    res = []
+    t = find_anagrams(filename)
+    
+    for i in t:
+        possibles = i
+        
+        for x in range(len(possibles)):
+            for y in range(len(possibles)):
+                if is_swappable(possibles[x], possibles[y]):
+                    res.append((possibles[x], possibles[y]))
+
+    return res
+            
+
+
+def is_swappable(word1, word2):
+    """Input: 2 strings of equal length
+    Returns True if Word2 can be formed by swapping 2 letters in Word1, else False"""
+    differing_letter_positions = []
+    index = 0
+    for i in word1:
+        if word1[index] != word2[index]:
+            differing_letter_positions.append(index)
+        index += 1
+    if len(differing_letter_positions) != 2:
+        return False
+    word2 = list(word2)
+    index1 = differing_letter_positions[0]
+    index2 = differing_letter_positions[1]
+    word2[index1], word2[index2] = word2[index2], word2[index1]
+    if list(word1) == (word2):
+        return True
+    return False
+    
+    
 def make_anagram_dict(filename):
     """Takes a text file containing one word per line.
     Returns a dictionary:
@@ -53,35 +91,9 @@ def sort_anagram_list(filename):
     return res
 
 
-def find_most_anagrams_of_length_n(filename, n):
-    result = []
-    t = make_anagram_dict(filename)
-    for i in t:
-        anagrams = []
-        if len(i) == n:
-            for word in t[i]:
-                anagrams.append(word)
-            if sorted(anagrams) not in anagrams:
-                result.append(sorted(anagrams))
-    answer = []
-    lengths_dict = {}
-    for i in result:
-        if len(i) > 1:
-            if len(i) not in lengths_dict:
-                lengths_dict[len(i)] = [i]
-            else:
-                lengths_dict[len(i)].append(i)
 
-    for k, v in sorted(lengths_dict.items(), reverse=True):
-        answer.append(v)
-    return answer[0]
-        
-##x = find_anagrams('words.txt')
-##for i in x:
-##    print(i)
-
-
-t = find_most_anagrams_of_length_n('words.txt', n=8)
-print(t)
+t = find_metathesis_pair('words.txt')
+for i in t:
+    print(i)
 
     
