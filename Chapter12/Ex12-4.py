@@ -1,3 +1,5 @@
+import pprint
+
 reducible_dict = dict()
 reducible_dict[''] = True
 
@@ -44,15 +46,15 @@ def search_for_reducible_words(word_dict):
     for word in word_dict:
         if is_reducible(word, word_dict):
             reducible_dict[word] = True
-            result[word] = (len(word), find_reducible_chain(word, word_dict))
+            result[word] = [len(word), find_reducible_chain(word, word_dict)]
     return result
             
 def find_reducible_chain(word, word_dict):
-    result = ''
+    result = []
     for child in find_children(word, word_dict):
 
         if is_reducible(child, word_dict):
-            result = result + child + '-->' + find_reducible_chain(child, word_dict)
+            result.append ([word, find_reducible_chain(child, word_dict)])
     return result
 
 
@@ -70,7 +72,7 @@ word_dict = word_dict_setup('words.txt')
 
 t = find_longest_reducible_words(word_dict)
 for i in t:
-    print(i, '\n')
+    pprint.pprint(i)
 
 
                            
