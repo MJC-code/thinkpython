@@ -1,5 +1,12 @@
 import string
 word_usage = dict()
+d = open('words.txt') # open a text file of dictionary words
+word_list = dict()
+for i in d:
+    word_list[i.strip()] = None
+word_list['i'] = None
+word_list['a'] = None
+    
 
 def process_line(line):
     """Processes lines of text from Project Gutenberg, stripping punctuation,
@@ -35,24 +42,29 @@ def analyse_book(gutenberg_file):
             break
         process_line(line.strip())
     for word in sorted(word_usage, key=word_usage.get, reverse = True):
-        result.append(word)
-    return result[0:20]
+        if word not in word_list:
+            result.append(word)
+    return result
 
 
 # This text uses open and close quotes which are not part of string.punctuation
 d = analyse_book('pride_and_prejudice.txt')
-print('Pride and Prejudice top 20 words are:', d, '\n')
+print('Pride and Prejudice words not in word list are:\n')
+for word in d:
+    print(word)
 
 
 d = analyse_book('gatsby.txt')
-print('The Great Gatsby top 20 words are:', d, '\n')
+print('The Great Gatsby words not in word list are:\n')
+for word in d:
+    print(word)
 
 d = analyse_book('defoe.txt')
-print('Robinson Crusoe top 20 words are:' , d, '\n')
+print('Robinson Crusoe words not in word list are:\n')
+for word in d:
+    print(word)
 
 d = analyse_book('maugham.txt')
-print('Of Human Bondage top 20 words are:', d, '\n')
-
-
-
-
+print('Of Human Bondage words not in word list are:\n')
+for word in d:
+    print(word)

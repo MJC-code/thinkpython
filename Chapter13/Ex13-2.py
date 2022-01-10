@@ -2,6 +2,9 @@ import string
 word_usage = dict()
 
 def process_line(line):
+    """Takes a line of text from Project Gutenberg, strips punctuation,
+    converts to lower case, breaks into words, and increments the global
+    dictionary word_usage"""
     line = line.replace('-', ' ' )
     line = line.replace('—', ' ' )
     for word in line.split():
@@ -14,6 +17,8 @@ def process_line(line):
     
             
 def remove_header(gutenberg_file):
+    """Process a text file from Project Gutenberg, searching until the
+    marker for the start of the book is found"""
     for line in gutenberg_file:
         if '*** START OF' in line:
             break

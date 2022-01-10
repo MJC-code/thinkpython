@@ -1,6 +1,8 @@
 import string
 
 def process_line(line):
+    """Takes a line of text from Project Gutenberg, strips punctuation,
+    converts words to lower case and prints each word"""
     result = []    
     for word in line.split():
         word = word.replace('-', ' ')
