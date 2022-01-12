@@ -31,8 +31,8 @@ def remove_header(gutenberg_file):
             break
 
 def analyse_book(gutenberg_file):
-    """Takes a text file book from Project Gutenberg,
-    returns a list of the 20 most used words in the book"""
+    """Takes a text file from the Gutenberg Project, returns a list of words
+    in book that are not in word_list"""
     result = []
     word_usage.clear()
     fin = open(gutenberg_file)
@@ -47,7 +47,7 @@ def analyse_book(gutenberg_file):
     return result
 
 
-# This text uses open and close quotes which are not part of string.punctuation
+
 d = analyse_book('pride_and_prejudice.txt')
 print('Pride and Prejudice words not in word list are:\n')
 for word in d:
