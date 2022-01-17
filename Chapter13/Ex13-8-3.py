@@ -16,7 +16,6 @@ def process_file(filename, skip_header):
     for line in fp:
         if line.startswith('*** END OF TH'):
             break
-
         process_line(line, result)
 
     return result
@@ -46,9 +45,10 @@ def create_markov_dictionary():
     """Takes a Gutenberg Project text file
     Returns a Markov dictionary, where keys are tuples of prefix_length words,
     values are words that follow each tuple in the text"""
-    word_list = process_file('emma.txt', skip_header=True)
+    word_list = process_file('gatsby.txt', skip_header=True)
+    word_list.extend(process_file('emma.txt', skip_header=True))
     markov_dict = {}
-    prefix_length = 3
+    prefix_length = 2
     
     for i in range(len(word_list)):
         prefix = tuple(word_list[i:i+prefix_length])
@@ -71,8 +71,6 @@ def create_random_text(markov_dict, length):
     suffix = random.choice(prefix_suffix[1])
 
     for i in range(length):
-
-#        print(prefix, '\t', suffix)
         result.append(prefix[0])
         
         new_prefix = prefix[1:] + (suffix,)
@@ -86,6 +84,7 @@ def create_random_text(markov_dict, length):
 
 
 t = create_markov_dictionary()
+
 create_random_text(t, 100)
 
 ##if __name__ == '__main__':
