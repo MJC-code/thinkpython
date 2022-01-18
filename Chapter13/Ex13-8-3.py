@@ -48,7 +48,7 @@ def create_markov_dictionary():
     word_list = process_file('gatsby.txt', skip_header=True)
     word_list.extend(process_file('emma.txt', skip_header=True))
     markov_dict = {}
-    prefix_length = 2
+    prefix_length = 3
     
     for i in range(len(word_list)):
         prefix = tuple(word_list[i:i+prefix_length])
