@@ -1,0 +1,6 @@
+This is a test2 file.
+It contains several lines.
+If a string is found in one line of this text file as specified in sed, it will be replaced.
+This is a test2.
+End of the test2.
+
