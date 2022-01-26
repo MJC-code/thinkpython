@@ -41,30 +41,31 @@ def rect_inside_circle(circle, rectangle):
     """Takes a Circle and a Rectangle. Returns True if any part of the Rectangle falls inside the circle.
         Algorithm taken from:
         https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection"""
-    #TODO this code is not yet correct
+    
     rectangle.centre = find_centre(rectangle)
-    centre_points_distance_x = abs(circle.centre.x - rectangle.centre.x)
-    centre_points_distance_y = abs(circle.centre.y - rectangle.centre.y)
+    dx = abs(circle.centre.x - rectangle.centre.x)#x difference between centre of circle and rectangle
+    dy = abs(circle.centre.y - rectangle.centre.y) #y difference between centre of circle and rectangle
 
-    if centre_points_distance_x > rectangle.width/2 + circle.radius:
+    if dx > (rectangle.width/2 + circle.radius):
         return False
-    if centre_points_distance_y > rectangle.height/2 + circle.radius:
-        return z
+    if dy > (rectangle.height/2 + circle.radius):
+        return False
 
-    if centre_points_distance_x <= rectangle.width/2:
+    if dx <= (rectangle.width/2):
         return True
-    if centre_points_distance_y >= rectangle.height/2:
+    if dy <= (rectangle.height/2):
         return True
 
-    corner_distance_sq = (centre_points_distance_x - rectangle.width/2) **2 + (centre_points_distance_y - rectangle.height/2) **2
-
-    return (corner_distance_sq <= (circle.radius ** 2))
+    corner_distance_squared = (dx - rectangle.width/2)**2 + (dy - rectangle.height/2)**2
+    return corner_distance_squared <= (circle.radius**2)
+    
+    
         
     
 def find_centre(rect):
     rect_centre = Point()
     rect_centre.x = rect.corner.x + rect.width/2
-    rect_centre.y = rect.corner.y + rect.height/2
+    rect_centre.y = rect.corner.y - rect.height/2
     return rect_centre
 
 
@@ -93,15 +94,15 @@ def main():
     circ.radius = 50.0
 
     point = Point()
-    point.x = 50
+    point.x = 0
     point.y = 0
 
     rect = Rectangle()
     rect.corner = Point()
     rect.corner.x = 49
-    rect.corner.y = 170
-    rect.width = 1000.0
-    rect.height = 10000.0
+    rect.corner.y = 0
+    rect.width = 100.0
+    rect.height = 100.0
 
     print ('Point with position x:', point.x, 'y:', point.y)
     print ('Circle of radius', circ.radius ,', centre point is x:', circ.centre.x, 'y:', circ.centre.y)
