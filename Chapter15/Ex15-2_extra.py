@@ -132,7 +132,7 @@ class Rectangle:
 def main():
     circ = Circle()
     circ.centre = Point()
-    circ.centre.x = -49
+    circ.centre.x = -25
     circ.centre.y = 20
     circ.radius = 50.0
 
@@ -142,8 +142,8 @@ def main():
 
     rect = Rectangle()
     rect.corner = Point()
-    rect.corner.x = 0
-    rect.corner.y = 10
+    rect.corner.x = 30
+    rect.corner.y = 20
     rect.width = 50.0
     rect.height = 100.0
 
