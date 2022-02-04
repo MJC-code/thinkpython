@@ -125,20 +125,36 @@ class PokerHand(Hand):
         self.label = label
                 
         
+def count(deck, num_hands, num_cards):
+    
+    global result
+    for i in range(num_hands):
+        deck.shuffle()
+        hand = PokerHand()
+        deck.move_cards(hand, num_cards)
+        hand.sort()
+#        print(hand)
+        hand.classify()
+        if hand.label not in result:
+            result[hand.label] = 1
+        else:
+            result[hand.label] += 1
+    
         
 if __name__ == '__main__':
-    # make a deck
-    deck = Deck()
-    deck.shuffle()
+    deals = 10000 #number of deals to make
+    num_hands = 4 #hands per deal
+    num_cards = 5 # cards per hand
+    result = dict()
+    
+    for i in range(deals):
+        deck = Deck()
+        count(deck, num_hands, num_cards)
 
-    # deal the cards and classify the hands
-    for i in range(4):
-        hand = PokerHand()
-        deck.move_cards(hand, 7)
-        hand.sort()
-        print(hand)
-
-        hand.classify()
-        print(hand.label)
-        print('')
-        
+    hands = deals * num_hands
+    
+    for score in result:
+        print(score, 'occurs', "{:.2f}".format(result[score]/hands*100),
+    '% of the hands') 
+    
+      
