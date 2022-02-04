@@ -93,7 +93,16 @@ class PokerHand(Hand):
 
     def has_straight_flush(self):
         self.suit_and_rank_hist()
-        cards_of_one_suit = []
+
+        d = {} # Build a dictionary of PokerHands. Key = suit, val = PokerHand of cards of that suit in self.cards
+        for card in self.cards:
+            d.setdefault(card.suit, PokerHand()).add_card(card)
+        for hand in d.values():
+            if len(hand.cards) >= 5:
+                hand.suit_and_rank_hist()
+                if hand.has_straight():
+                    return True
+        return False
 
 
 if __name__ == '__main__':
@@ -102,11 +111,11 @@ if __name__ == '__main__':
     deck.shuffle()
 
     # deal the cards and classify the hands
-    for i in range(7):
+    for i in range(4):
         hand = PokerHand()
         deck.move_cards(hand, 7)
         hand.sort()
         print(hand)
-        print(hand.has_full_house())
+        print(hand.has_straight_flush())
         print('')
 
