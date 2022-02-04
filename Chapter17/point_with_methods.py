@@ -15,6 +15,9 @@ class Point:
             result = self.add_tuple_to_self(other)
         return result
 
+    def __radd__(self, other):
+            return self.__add__(other)
+
     def add_point_to_self(self, other):
         result = Point()
         result.x = self.x + other.x
@@ -27,11 +30,12 @@ class Point:
         result.y = self.y + other[1]
         return result
 
+
 p1 = Point(2, 7)
 p2 = Point(3, 6)
 p3 = p1 + p2
 print(p1, p2, p3)
-p3 += (20, 25)
+p3 = (20, 25) + p2
 print(p1, p2, p3)
 
 
