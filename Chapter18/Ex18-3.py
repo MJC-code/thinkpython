@@ -18,8 +18,7 @@ class PokerHand(Hand):
     """Represents a poker hand."""
 
     def suit_and_rank_hist(self):
-        """Builds a histogram of the suits and ranks that appear in the hand.
-
+        """Builds histograms of the suits and ranks that appear in the hand.
         Stores the result in attributes suits and ranks.
         """
         self.suits = {}
@@ -45,7 +44,7 @@ class PokerHand(Hand):
                 pairs += 1
         return pairs >=2
 
-    def three_of_kind(self):
+    def has_threekind(self):
         self.suit_and_rank_hist()
         for val in self.ranks.values():
             if val >= 3:
@@ -76,22 +75,22 @@ class PokerHand(Hand):
                 return True
         return False
 
-    def has_full_house(self):
+    def has_fullhouse(self):
         self.suit_and_rank_hist()
-        two_most_common_cards = nlargest(2, self.suits, key=self.suits.get)
-        if self.suits.get(two_most_common_cards[0]) >= 3:
-            if self.suits.get(two_most_common_cards[1]) >= 2:
+        two_most_common_cards = nlargest(2, self.ranks, key=self.ranks.get)
+        if self.ranks.get(two_most_common_cards[0]) >= 3:
+            if self.ranks.get(two_most_common_cards[1]) >= 2:
                 return True
         return False
         
-    def has_four_of_kind(self):
+    def has_fourkind(self):
         self.suit_and_rank_hist()
         for val in self.ranks.values():
             if val >= 4:
                 return True
         return False
 
-    def has_straight_flush(self):
+    def has_straightflush(self):
         self.suit_and_rank_hist()
 
         d = {} # Build a dictionary of PokerHands. Key = suit, val = PokerHand of cards of that suit in self.cards
@@ -104,7 +103,30 @@ class PokerHand(Hand):
                     return True
         return False
 
-
+    def classify(self):
+        if self.has_straightflush():
+            label = 'Straight flush'
+        elif self.has_fourkind():
+            label = 'Four of a kind'
+        elif self.has_fullhouse():
+            label = 'Full house'
+        elif self.has_flush():
+            label = 'Flush'
+        elif self.has_straight():
+            label = 'Straight'
+        elif self.has_threekind():
+            label = 'Three of a kind'
+        elif self.has_twopair():
+            label = 'Two pairs'
+        elif self.has_pair():
+            label = 'Pair'
+        else:
+            label = 'Nothing'
+        self.label = label
+                
+        
+        
+        
 if __name__ == '__main__':
     # make a deck
     deck = Deck()
@@ -116,6 +138,8 @@ if __name__ == '__main__':
         deck.move_cards(hand, 7)
         hand.sort()
         print(hand)
-        print(hand.has_straight_flush())
-        print('')
 
+        hand.classify()
+        print(hand.label)
+        print('')
+        
