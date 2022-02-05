@@ -30,6 +30,7 @@ class PokerHand(Hand):
 
         
     def has_pair(self):
+        """Tests whether a PokerHand contains 2 of the same rank"""
         self.suit_and_rank_hist()
         for val in self.ranks.values():
             if val >= 2:
@@ -37,6 +38,7 @@ class PokerHand(Hand):
         return False
 
     def has_twopair(self):
+        """Tests whether a PokerHand contains 2 pairs of same rank"""
         self.suit_and_rank_hist()
         pairs = 0
         for val in self.ranks.values():
@@ -45,6 +47,7 @@ class PokerHand(Hand):
         return pairs >=2
 
     def has_threekind(self):
+        """"Tests PokerHand for 3 of same rank"""
         self.suit_and_rank_hist()
         for val in self.ranks.values():
             if val >= 3:
@@ -52,6 +55,7 @@ class PokerHand(Hand):
         return False
 
     def has_straight(self):
+        """Tests PokerHand for 5 cards with ranks in sequence"""
         self.suit_and_rank_hist()
         ranks = self.ranks.copy()
         ranks[14] = ranks.get(1, 0) # Makes Aces high as well as low
@@ -66,7 +70,7 @@ class PokerHand(Hand):
         return False
 
     def has_flush(self):
-        """Returns True if the hand has a flush, False otherwise.
+        """Returns True if the hand has a flush (5 cards with same suit), False otherwise.
         Note that this works correctly for hands with more than 5 cards.
         """
         self.suit_and_rank_hist()
@@ -76,6 +80,7 @@ class PokerHand(Hand):
         return False
 
     def has_fullhouse(self):
+        """Tests PokerHand for 3 of one rank, two of another"""
         self.suit_and_rank_hist()
         two_most_common_cards = nlargest(2, self.ranks, key=self.ranks.get)
         if self.ranks.get(two_most_common_cards[0]) >= 3:
@@ -84,6 +89,7 @@ class PokerHand(Hand):
         return False
         
     def has_fourkind(self):
+        """Tests a PokerHand for 4 of same rank"""
         self.suit_and_rank_hist()
         for val in self.ranks.values():
             if val >= 4:
@@ -91,6 +97,7 @@ class PokerHand(Hand):
         return False
 
     def has_straightflush(self):
+        """Tests a PokerHand for 5 cards of same suit with ranks in a sequence"""
         self.suit_and_rank_hist()
 
         d = {} # Build a dictionary of PokerHands. Key = suit, val = PokerHand of cards of that suit in self.cards
@@ -104,6 +111,9 @@ class PokerHand(Hand):
         return False
 
     def classify(self):
+        """Works out the highest-value classification for a PokerHand
+        Assigns that classification to self.label
+        """
         if self.has_straightflush():
             label = 'Straight flush'
         elif self.has_fourkind():
@@ -126,7 +136,9 @@ class PokerHand(Hand):
                 
         
 def count(deck, num_hands, num_cards):
-    
+    """Shuffles deck, draws num_hands hands of size num_cards.
+    Classifies each hand, and adds the result to the global dictionary results
+    """
     global result
     for i in range(num_hands):
         deck.shuffle()
@@ -142,7 +154,8 @@ def count(deck, num_hands, num_cards):
     
         
 if __name__ == '__main__':
-    deals = 10000 #number of deals to make
+    # Result is a globabl dictionary of hand classifcations --> frequencies
+    deals = 20000 #number of deals to make
     num_hands = 4 #hands per deal
     num_cards = 5 # cards per hand
     result = dict()
@@ -152,9 +165,9 @@ if __name__ == '__main__':
         count(deck, num_hands, num_cards)
 
     hands = deals * num_hands
-    
+    print('For', num_cards, 'card hands, the frequencies are:\n')
     for score in result:
-        print(score, 'occurs', "{:.2f}".format(result[score]/hands*100),
+        print(score, 'occurs in', "{:.3f}".format(result[score]/hands*100),
     '% of the hands') 
     
       
